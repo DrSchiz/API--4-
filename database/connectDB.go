@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,7 +15,7 @@ var GormDB *gorm.DB
 func Connect() {
 	var err error
 	GormDB, err = gorm.Open(postgres.New(postgres.Config{
-		DSN:                  "user=postgres password=postgres dbname=IEAIS port=5432 sslmode=disable",
+		DSN:                  "user=" + os.Getenv("USER") + " password=" + os.Getenv("PASSWORD") + " dbname=" + os.Getenv("DBNAME") + " port=" + os.Getenv("PORT") + " sslmode=disable",
 		PreferSimpleProtocol: true, // disables implicit prepared statement usage
 	}), &gorm.Config{})
 	if err != nil {

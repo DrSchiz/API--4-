@@ -98,6 +98,7 @@ func CreateClient(c *gin.Context) {
 		})
 		return
 	}
+
 	c.JSON(200, gin.H{
 		"success": "Аккаунт успешно создан!",
 	})
